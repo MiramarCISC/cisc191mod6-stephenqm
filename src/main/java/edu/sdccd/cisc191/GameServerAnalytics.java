@@ -19,6 +19,7 @@ public class GameServerAnalytics {
     public static Map<String, Double> averageRatingByRegion(Collection<PlayerAccount> players) {
         // TODO: use groupingBy + averagingInt
         //collect players into groups by region then averaged them
+
         return players.stream()
                 .collect(Collectors.groupingBy(
                         PlayerAccount::region,
