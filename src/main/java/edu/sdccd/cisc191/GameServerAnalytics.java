@@ -2,6 +2,8 @@ package edu.sdccd.cisc191;
 
 import java.util.*;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
+
 
 public class GameServerAnalytics {
 
@@ -16,13 +18,13 @@ public class GameServerAnalytics {
 
     public static Map<String, Double> averageRatingByRegion(Collection<PlayerAccount> players) {
         // TODO: use groupingBy + averagingInt
+        //collect players into groups by region then averaged them
         return players.stream()
-                .collect(java.util.stream.Collectors.groupingBy(
+                .collect(Collectors.groupingBy(
                         PlayerAccount::region,
-                        java.util.stream.Collectors.averagingInt(PlayerAccount::rating)
+                        Collectors.averagingInt(PlayerAccount::rating)
                 ));
     }
-
     public static Set<String> findDuplicateUsernames(Collection<PlayerAccount> players) {
         // TODO: use collections and/or streams
         Set<String> seen = new java.util.HashSet<>();
@@ -50,18 +52,20 @@ public class GameServerAnalytics {
 
     public static Map<String, List<String>> buildRecentMatchSummariesByPlayer(Collection<MatchRecord> matches) {
         // TODO: use a Map + collection logic or a stream-based approach
-        Map<String, List<String>> recentMatches = new HashMap<>();
+        Map<String, List<String>> recentMatches = new LinkedHashMap<>();
+        // changed to hashmap to preserve insertion order
 
         for (MatchRecord match : matches) {
             String p1 = match.playerOne().username();
             String p2 = match.playerTwo().username();
-            String summary =  match.summary();
+            String summary = match.summary();
 
-            recentMatches.computeIfAbsent(p1, k -> new java.util.ArrayList<>()).add(summary);
-            recentMatches.computeIfAbsent(p2, k -> new java.util.ArrayList<>()).add(summary);
+            recentMatches.computeIfAbsent(p1, k -> new ArrayList<>()).add(summary);
+            recentMatches.computeIfAbsent(p2, k -> new ArrayList<>()).add(summary);
         }
         return recentMatches;
     }
+
 
     public static <T> T pickHigherRated(T first, T second, Comparator<T> comparator) {
         // TODO: implement using the comparator
