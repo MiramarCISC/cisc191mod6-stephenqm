@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=23963527)
+=======
+[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=23789237)
+>>>>>>> 2f5c252347041e3eb908ff71da5da7a2136e6d86
 # Module 6 Lab: Generics, Collections, and Advanced Streams
 ## 1v1 Game Server Theme
 

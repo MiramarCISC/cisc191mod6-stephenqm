@@ -14,18 +14,26 @@ public class GenericMatchQueue<T> {
     public T dequeue() {
         // TODO: remove and return the front item
         // throw IllegalStateException if the queue is empty
+<<<<<<< HEAD
         if (items.isEmpty()) {
             throw new IllegalStateException("Empty queue");
         }
+=======
+        if (items.isEmpty()) throw new IllegalStateException("Queue is empty");
+>>>>>>> 2f5c252347041e3eb908ff71da5da7a2136e6d86
         return items.removeFirst();
     }
 
     public T peek() {
         // TODO: return the front item without removing it
         // throw IllegalStateException if the queue is empty
+<<<<<<< HEAD
         if (items.isEmpty()) {
             throw new IllegalStateException("Empty queue");
         }
+=======
+        if (items.isEmpty()) throw new IllegalStateException("Queue is empty");
+>>>>>>> 2f5c252347041e3eb908ff71da5da7a2136e6d86
         return items.getFirst();
     }
 
