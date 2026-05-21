@@ -1,12 +1,13 @@
 package edu.sdccd.cisc191;
 
 import java.util.*;
-import java.util.stream.*;
+import java.util.stream.Collectors;
 
 public class GameServerAnalytics {
 
+
     public static List<String> findTopNUsernamesByRating(Collection<PlayerAccount> players, int n) {
-        // TODO: use a stream pipeline
+
         return players.stream()
                 .sorted(Comparator.comparingInt(PlayerAccount::rating).reversed())
                 .limit(n)
@@ -15,7 +16,7 @@ public class GameServerAnalytics {
     }
 
     public static Map<String, Double> averageRatingByRegion(Collection<PlayerAccount> players) {
-        // TODO: use groupingBy + averagingInt
+
         return players.stream()
                 .collect(Collectors.groupingBy(
                         PlayerAccount::region,
@@ -23,20 +24,25 @@ public class GameServerAnalytics {
                 ));
     }
 
+
     public static Set<String> findDuplicateUsernames(Collection<PlayerAccount> players) {
-        // TODO: use collections and/or streams
+
         Set<String> seen = new HashSet<>();
         Set<String> duplicates = new HashSet<>();
+
         for (PlayerAccount p : players) {
-            if (!seen.add(p.username())) {
-                duplicates.add(p.username());
+            String username = p.username();
+
+            if (!seen.add(username)) {
+                duplicates.add(username);
             }
         }
+
         return duplicates;
     }
 
     public static Map<String, List<String>> groupUsernamesByTier(Collection<PlayerAccount> players) {
-        // TODO: use groupingBy and mapping
+
         return players.stream()
                 .collect(Collectors.groupingBy(
                         GameServerAnalytics::tierFor,
@@ -45,24 +51,32 @@ public class GameServerAnalytics {
     }
 
     public static Map<String, List<String>> buildRecentMatchSummariesByPlayer(Collection<MatchRecord> matches) {
-        // TODO: use a Map + collection logic or a stream-based approach
+
         Map<String, List<String>> result = new HashMap<>();
+
         for (MatchRecord match : matches) {
+
             String summary = match.summary();
-            result.computeIfAbsent(match.playerOne().username(), k -> new ArrayList<>()).add(summary);
-            result.computeIfAbsent(match.playerTwo().username(), k -> new ArrayList<>()).add(summary);
+
+            result.computeIfAbsent(match.playerOne().username(), k -> new ArrayList<>())
+                    .add(summary);
+
+            result.computeIfAbsent(match.playerTwo().username(), k -> new ArrayList<>())
+                    .add(summary);
         }
+
         return result;
     }
 
     public static <T> T pickHigherRated(T first, T second, Comparator<T> comparator) {
-        // TODO: implement using the comparator
         return comparator.compare(first, second) >= 0 ? first : second;
     }
 
     public static String tierFor(PlayerAccount player) {
+
         if (player.rating() < 1000) return "Bronze";
         if (player.rating() < 1400) return "Silver";
+
         return "Gold";
     }
 }
