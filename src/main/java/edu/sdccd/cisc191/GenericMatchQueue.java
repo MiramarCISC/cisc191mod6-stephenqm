@@ -7,14 +7,12 @@ public class GenericMatchQueue<T> {
     private final LinkedList<T> items = new LinkedList<>();
 
     public void enqueue(T item) {
-
-        // add the item to the back of the queue
+        // TODO: add the item to the back of the queue
         items.addLast(item);
     }
 
     public T dequeue() {
-
-        // remove and return the front item
+        // TODO: remove and return the front item
         // throw IllegalStateException if the queue is empty
         if (items.isEmpty()) {
             throw new IllegalStateException("Queue is empty");
@@ -24,8 +22,7 @@ public class GenericMatchQueue<T> {
     }
 
     public T peek() {
-
-        // return the front item without removing it
+        // TODO: return the front item without removing it
         // throw IllegalStateException if the queue is empty
         if (items.isEmpty()) {
             throw new IllegalStateException("Queue is empty");
@@ -35,8 +32,7 @@ public class GenericMatchQueue<T> {
     }
 
     public boolean isEmpty() {
-
-        // return true when the queue has no items
+        // TODO: return true when the queue has no items
         return items.isEmpty();
     }
 
